@@ -1,5 +1,5 @@
 <?php
-Class Farm{
+Class Villagers{
     private $villagerId;
     private $Name;
     private $BirthDate;
