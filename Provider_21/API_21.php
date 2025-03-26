@@ -4,6 +4,8 @@ require_once 'classes/DB.php';
 
 header('Content-Type: application/json');
 
+include('classes/farm.php');
+
 $db = new DB();
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -39,7 +41,7 @@ switch ($method) {
             $data = json_decode(file_get_contents("php://input"), true);
             
             if ($action == 'createFarm') {
-                $farm = new Farm($data['Crop'], $data['size'], $data['price'], $data['BuildDate']);
+                $farm = new farm($data['Crop'], $data['size'], $data['price'], $data['BuildDate']);
                 $result = ["id" => $db->insertFarm($farm)];
             } elseif ($action == 'createHouse') {
                 $house = new House($data['Address'], $data['Owner'], $data['value'], $data['BuildDate']);
@@ -61,7 +63,7 @@ switch ($method) {
             $data = json_decode(file_get_contents("php://input"), true);
             
             if ($action == 'updateFarm' && isset($data['id'])) {
-                $farm = new Farm($data['Crop'], $data['size'], $data['price'], $data['BuildDate']);
+                $farm = new farm($data['Crop'], $data['size'], $data['price'], $data['BuildDate']);
                 $farm->setId($data['id']);
                 $result = ["success" => $db->updateFarm($farm)];
             } elseif ($action == 'updateHouse' && isset($data['id'])) {
