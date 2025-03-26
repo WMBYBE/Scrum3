@@ -29,7 +29,7 @@ Head to the tester</a>
 <body>
  
 <fieldset>
-    <legend>Add Member</legend>
+    <legend>Add Farm</legend>
  
     <form action="../API_21.php?action=createFarm" method="post">
         <table cellspacing="0" cellpadding="0">
