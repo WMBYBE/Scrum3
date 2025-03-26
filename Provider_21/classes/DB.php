@@ -30,6 +30,14 @@ public function getFarmById($id) {
     return $stmt->get_result()->fetch_assoc();
 }
 
+public function getAllFarms(){
+    $stmt=$this->conn->prepare("SELECT * FROM farm");
+    $stmt->execute();
+    $result= $stmt->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
 public function updateFarm(Farm $farm) {
     $stmt = $this->conn->prepare("UPDATE farm SET crop = ?, size = ?, price = ?, BuildDate = ? WHERE FarmId = ?");
     $stmt->bind_param("sidsi", $farm->getCrop(), $farm->getSize(), $farm->getPrice(), $farm->getBuildDate(), $farm->getFarm());
@@ -57,6 +65,14 @@ public function getHousebyId($id) {
     return $stmt->get_result()->fetch_assoc();
 }
 
+public function getAllHouses(){
+    $stmt=$this->conn->prepare("SELECT * FROM houses");
+    $stmt->execute();
+    $result= $stmt->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
 public function updateHouse(Houses $houses) {
     $stmt = $this->conn->prepare("UPDATE houses SET address = ?, owner = ?, value = ?, buildDate = ? WHERE HouseId = ?");
     $stmt->bind_param("ssdsi", $houses->getAddress(), $houses->getOwner(), $houses->getValue(), $houses->getId());
@@ -82,6 +98,14 @@ public function getVillagerbyId($id) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     return $stmt->get_result()->fetch_assoc();
+}
+
+public function getAllVillagers(){
+    $stmt=$this->conn->prepare("SELECT * FROM villagers");
+    $stmt->execute();
+    $result= $stmt->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 public function updateVillager(Villagers $villagers) {
